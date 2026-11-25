@@ -1,0 +1,24 @@
+name: Templates CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    name: Verify Demo Templates & Tarball Smoke (Node 24)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+      - name: Verify demo templates, Class D / media gate & license
+        run: npm run verify
+      - name: Clean-room tarball pack & install smoke test
+        run: npm run smoke:tarball
