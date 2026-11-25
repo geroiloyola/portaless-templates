@@ -1,0 +1,74 @@
+name: Deploy Official Demo to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "demo/**"
+      - "index.mjs"
+      - "package.json"
+      - ".github/workflows/deploy-demo-pages.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Build Official Portaless Demo (Node 24)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout portaless-templates
+        uses: actions/checkout@v4
+        with:
+          path: templates
+
+      - name: Checkout portaless core (main)
+        uses: actions/checkout@v4
+        with:
+          repository: geroiloyola/portaless
+          ref: main
+          path: portaless
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: npm
+          cache-dependency-path: portaless/package-lock.json
+
+      - name: Install Portaless dependencies
+        working-directory: portaless
+        run: npm ci --no-audit --no-fund
+
+      - name: Overlay live demo/ from portaless-templates main
+        run: |
+          rm -rf portaless/node_modules/@portaless/templates/demo
+          cp -r templates/demo portaless/node_modules/@portaless/templates/demo
+
+      - name: Build static demo site
+        working-directory: portaless
+        run: node node_modules/astro/bin/astro.mjs build
+        env:
+          PORTALESS_SITE_URL: https://geroiloyola.github.io
+          PORTALESS_BASE_PATH: /portaless-templates/
+          PORTALESS_SITE_PROFILE: demo
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: portaless/dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
