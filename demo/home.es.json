@@ -3,7 +3,7 @@
   "slug": "home",
   "title": "Portaless — sé dueño de tu sitio, responde a las máquinas, extiéndelo con seguridad",
   "description": "Un sistema de publicación autoalojado con identidad criptográfica, una política escrita para los lectores de IA y extensiones que corren en un sandbox.",
-  "theme": "portaless-nocturno",
+  "theme": "portaless-editorial",
   "root": [
     {
       "id": "hero",
@@ -42,7 +42,8 @@
       "type": "FeatureGrid",
       "props": {
         "title": "",
-        "items": "shield :: Sé dueño del estado :: La identidad, el contenido y la política viven en un nodo que controlás — portable, verificable, autoalojado.\nbot :: Respondé a las máquinas :: Una política escrita decide quién puede leer, y el sitio responde igual a cada lector.\npackage :: Extendelo con seguridad :: El código de terceros corre en un sandbox, con capacidades concedidas de a una — nunca acceso sin restricciones al core.\nserver :: Autoalojado, sin base expuesta :: Un comando lo instala; corre sin hosting pago y sin una base de datos expuesta a internet."
+        "layout": "bento",
+        "items": "shield :: Sé dueño del estado :: La identidad, el contenido y la política viven en un nodo que controlás — portable, verificable, autoalojado. :: span=2 :: featured\nbot :: Respondé a las máquinas :: Una política escrita decide quién puede leer, y el sitio responde igual a cada lector.\npackage :: Extendelo con seguridad :: El código de terceros corre en un sandbox, con capacidades concedidas de a una — nunca acceso sin restricciones al core.\nserver :: Autoalojado, sin base expuesta :: Un comando lo instala; corre sin hosting pago y sin una base de datos expuesta a internet. :: span=2 :: featured"
       }
     },
     {

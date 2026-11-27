@@ -3,7 +3,7 @@
   "slug": "home",
   "title": "Portaless — own your site, answer the machines, extend it safely",
   "description": "A self-hosted publishing system with a cryptographic identity, a written policy for AI readers, and extensions that run in a sandbox.",
-  "theme": "portaless-nocturno",
+  "theme": "portaless-editorial",
   "root": [
     {
       "id": "hero",
@@ -42,7 +42,8 @@
       "type": "FeatureGrid",
       "props": {
         "title": "",
-        "items": "shield :: Own the state :: Identity, content and policy live in a node you control — portable, verifiable, self-hosted.\nbot :: Answer the machines :: One written policy decides who may read, and the site answers the same way to every reader.\npackage :: Extend it safely :: Third-party code runs in a sandbox, granted one capability at a time — never unrestricted access to the core.\nserver :: Self-host, no exposed database :: One command installs it; it runs without paid hosting and without a database on the internet."
+        "layout": "bento",
+        "items": "shield :: Own the state :: Identity, content and policy live in a node you control — portable, verifiable, self-hosted. :: span=2 :: featured\nbot :: Answer the machines :: One written policy decides who may read, and the site answers the same way to every reader.\npackage :: Extend it safely :: Third-party code runs in a sandbox, granted one capability at a time — never unrestricted access to the core.\nserver :: Self-host, no exposed database :: One command installs it; it runs without paid hosting and without a database on the internet. :: span=2 :: featured"
       }
     },
     {
